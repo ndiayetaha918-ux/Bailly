@@ -1,8 +1,9 @@
 import { lazy, Suspense } from "react";
-import { createBrowserRouter, createMemoryRouter, RouterProvider } from "react-router";
+import { createBrowserRouter, createHashRouter, createMemoryRouter, RouterProvider } from "react-router";
 import { Lobby } from "@/features/lobby/Lobby";
 import { ThemeSync } from "@/components/ThemeSync";
 import { Toaster } from "@/components/ui/Toast";
+import { Splash } from "@/components/brand/Splash";
 import { PageFallback } from "@/components/layout/PageFallback";
 import { OwnerShell } from "@/components/layout/OwnerShell";
 import { ManagerShell } from "@/components/layout/ManagerShell";
@@ -27,8 +28,9 @@ const PropertyBuilder = lazy(() => import("@/features/builder/PropertyBuilder"))
 
 const page = (el: React.ReactNode) => <Suspense fallback={<PageFallback />}>{el}</Suspense>;
 
-// Hosted previews (claude.ai artifacts) cannot rely on URL paths: use an in-memory router there.
-const makeRouter = import.meta.env.VITE_ARTIFACT ? createMemoryRouter : createBrowserRouter;
+// Static previews cannot rely on URL paths: hash routing for raw.githack, in-memory for claude.ai artifacts.
+const mode = import.meta.env.VITE_ROUTER;
+const makeRouter = mode === "memory" ? createMemoryRouter : mode === "hash" ? createHashRouter : createBrowserRouter;
 
 const router = makeRouter([
   { path: "/", element: <Lobby /> },
@@ -77,6 +79,7 @@ export function App() {
     <>
       <ThemeSync />
       <RouterProvider router={router} />
+      <Splash />
       <Toaster />
     </>
   );

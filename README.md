@@ -7,6 +7,11 @@ Ce dépôt contient le MVP visuel et fonctionnel : trois expériences distinctes
 
 > Le brief mentionnait « [NOM DU PRODUIT] ». Le nom **Bailly** est repris du nom du dépôt (et de « bail »). Il se change dans `index.html`, `src/components/brand/Logo.tsx` et les textes.
 
+## Essayer sans installer
+
+Version autonome (un seul fichier, régénérée par `npm run build:preview`) :
+https://raw.githack.com/ndiayetaha918-ux/Bailly/main/preview/index.html
+
 ## Lancer le projet
 
 ```bash
