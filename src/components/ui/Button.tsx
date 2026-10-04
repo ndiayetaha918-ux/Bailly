@@ -15,7 +15,7 @@ const variants: Record<Variant, string> = {
   ghost: "text-ink-2 hover:text-ink hover:bg-surface-3/70",
   signal: "bg-signal-soft text-signal-ink hover:brightness-[0.97]",
   "on-forest": "bg-white/10 text-on-forest hover:bg-white/16 border border-white/12",
-  mint: "bg-mint text-[#05301f] hover:bg-[#a6ecca] shadow-[inset_0_1px_0_rgb(255_255_255/0.35)]",
+  mint: "bg-mint text-[color:var(--on-mint)] hover:brightness-105 shadow-[inset_0_1px_0_rgb(255_255_255/0.35)]",
 };
 
 const sizes: Record<Size, string> = {

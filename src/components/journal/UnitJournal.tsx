@@ -1,3 +1,4 @@
+import { brand } from "@/brand/brand";
 import {
   ArrowBendDownRight,
   BellRinging,
@@ -227,7 +228,7 @@ function EventLine({ event, receiptBase, viewer }: { event: UnitEvent; receiptBa
   const pay = event.paymentId ? d.payments.find((p) => p.id === event.paymentId) : undefined;
   const receipt = pay?.receiptId ? d.receipts.find((r) => r.id === pay.receiptId) : undefined;
   const meta: Record<UnitEvent["type"], { icon: React.ReactNode; tone: string }> = {
-    payment_received: { icon: <CheckCircle size={16} weight="fill" />, tone: "text-emerald" },
+    payment_received: { icon: <CheckCircle size={16} weight="fill" />, tone: "text-emerald-bright" },
     payment_failed: { icon: <XCircle size={16} weight="fill" />, tone: "text-signal" },
     receipt_issued: { icon: <ReceiptIcon size={16} />, tone: "text-ink-3" },
     reminder_sent: { icon: <BellRinging size={16} />, tone: "text-amber-ink" },
@@ -244,7 +245,12 @@ function EventLine({ event, receiptBase, viewer }: { event: UnitEvent; receiptBa
       <span className={cn("grid size-6 shrink-0 place-items-center rounded-[8px] bg-surface-2", m.tone)}>{m.icon}</span>
       <span className="min-w-0 flex-1 text-ink-2">
         {text}
-        {event.meta?.amount !== undefined && <span className="num font-medium text-ink"> {amount(Number(event.meta.amount))} FCFA</span>}
+        {event.meta?.amount !== undefined && (
+          <span className="num font-medium text-ink">
+            {" "}
+            {amount(Number(event.meta.amount))} {brand.currency}
+          </span>
+        )}
         {event.meta?.method && <span className="text-ink-3"> via {methodLabel[event.meta.method as keyof typeof methodLabel]}</span>}
       </span>
       {receipt && (

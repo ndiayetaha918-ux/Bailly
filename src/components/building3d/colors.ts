@@ -1,34 +1,42 @@
 import type { Palette3D } from "./Building3D";
+import { brand } from "@/brand/brand";
+
+const pick = (pair: [string, string], dark: boolean) => (dark ? pair[1] : pair[0]);
 
 export function readPalette3D(): Palette3D {
   const css = getComputedStyle(document.documentElement);
   const v = (n: string) => css.getPropertyValue(n).trim();
   const dark = document.documentElement.dataset.theme === "dark";
+  const m = brand.model3D;
   return {
-    slab: dark ? "#2b4237" : "#f4f6f3",
-    core: dark ? "#1a2c24" : "#dfe6e0",
-    edge: dark ? "#3e5a4c" : "#a9b8ae",
+    slab: pick(m.slab, dark),
+    core: pick(m.core, dark),
+    edge: pick(m.edge, dark),
     ground: v("--surface-2"),
-    gridCell: dark ? "#1e3329" : "#d3dcd5",
-    gridSection: dark ? "#2a4639" : "#b9c6bd",
+    gridCell: pick(m.gridCell, dark),
+    gridSection: pick(m.gridSection, dark),
     accent: v("--mint") || "#8fe3bd",
     door: v("--forest") || "#0a2a1f",
-    glass: dark ? "#cfe9db" : "#16392c",
+    glass: pick(m.glass, dark),
+    shadow: m.shadow,
+    groundLight: m.groundLight,
+    ink: v("--ink") || "#0b1913",
   };
 }
 
 export function stateColor3D(state: string): string {
   const dark = document.documentElement.dataset.theme === "dark";
+  const s = brand.state3D;
   switch (state) {
     case "paid":
-      return dark ? "#2fae7a" : "#2fbf86";
+      return pick(s.paid, dark);
     case "partial":
-      return "#e5a92e";
+      return s.partial;
     case "late":
-      return "#e5582f";
+      return s.late;
     case "vacant":
-      return dark ? "#33473d" : "#ffffff";
+      return pick(s.vacant, dark);
     default:
-      return dark ? "#4b6357" : "#cfd9d2";
+      return pick(s.other, dark);
   }
 }

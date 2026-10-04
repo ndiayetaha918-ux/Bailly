@@ -108,7 +108,7 @@ export function TenantExchanges() {
               <Panel className={cn("p-4 transition-colors hover:border-line-strong", focus === c.id && "border-emerald")}>
                 <p className="text-[12px] text-ink-3">{c.category ? claimCategoryLabel[c.category] : "Réclamation"}</p>
                 <p className="mt-0.5 text-[14px] font-medium leading-snug">{c.subject}</p>
-                <p className={cn("mt-2 text-[12.5px]", c.status === "resolved" ? "text-emerald" : "text-ink-2")}>
+                <p className={cn("mt-2 text-[12.5px]", c.status === "resolved" ? "text-mint-ink" : "text-ink-2")}>
                   {c.status === "scheduled" && c.scheduledFor
                     ? `Passage le ${dateShort(c.scheduledFor)} à ${time(c.scheduledFor)}`
                     : claimStatusLabel[c.status!]}

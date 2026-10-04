@@ -1,4 +1,5 @@
 import { Plus } from "@phosphor-icons/react";
+import { brand } from "@/brand/brand";
 import { NavLink, Outlet, useLocation } from "react-router";
 import { motion } from "motion/react";
 import { Logo } from "@/components/brand/Logo";
@@ -29,7 +30,7 @@ export function OwnerShell() {
       <ScrollToTop />
       <header className="sticky top-0 z-30 border-b border-line bg-paper/92 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-[1320px] items-center gap-6 px-5 md:px-8">
-          <NavLink to="/proprietaire" aria-label="Bailly, patrimoine">
+          <NavLink to="/proprietaire" aria-label={`${brand.name}, patrimoine`}>
             <Logo />
           </NavLink>
           <nav className="hidden items-center gap-1 md:flex">

@@ -30,12 +30,7 @@ export function Sheet({
         {open && (
           <Dialog.Portal forceMount>
             <Dialog.Overlay asChild forceMount>
-              <motion.div
-                className="fixed inset-0 z-40 bg-[rgb(6_20_14/0.36)]"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              />
+              <motion.div className="fixed inset-0 z-40 bg-[var(--scrim)]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
             </Dialog.Overlay>
             <Dialog.Content asChild forceMount aria-describedby={undefined}>
               <motion.div
@@ -94,12 +89,7 @@ export function Modal({
         {open && (
           <Dialog.Portal forceMount>
             <Dialog.Overlay asChild forceMount>
-              <motion.div
-                className="fixed inset-0 z-40 bg-[rgb(6_20_14/0.36)]"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              />
+              <motion.div className="fixed inset-0 z-40 bg-[var(--scrim)]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
             </Dialog.Overlay>
             <div className="pointer-events-none fixed inset-0 z-50 grid place-items-end p-2 sm:place-items-center sm:p-4">
               <Dialog.Content asChild forceMount aria-describedby={undefined}>

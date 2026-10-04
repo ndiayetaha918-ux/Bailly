@@ -1,3 +1,4 @@
+import { brand } from "@/brand/brand";
 import {
   ArrowSquareOut,
   Bank,
@@ -117,7 +118,7 @@ export function Triage() {
             {all.length ? `${all.length} points à traiter` : "Tout est traité"}
           </h1>
           <p className="mt-1 text-[14px] text-ink-3">
-            {compact(owedTotal)} FCFA à recouvrer sur {ids.length} immeubles
+            {compact(owedTotal)} {brand.currency} à recouvrer sur {ids.length} immeubles
             {handled > 0 && (
               <span className="text-emerald">
                 , {handled} action{handled > 1 ? "s" : ""} faite{handled > 1 ? "s" : ""} aujourd'hui

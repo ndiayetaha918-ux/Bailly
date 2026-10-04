@@ -1,4 +1,5 @@
 import { ArrowLeft, ArrowRight, Buildings, Check, Cube, HouseLine, Minus, Plus, Storefront, SquaresFour, Stack } from "@phosphor-icons/react";
+import { brand } from "@/brand/brand";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router";
@@ -49,13 +50,7 @@ const DISTRICTS = [
   "Médina",
 ];
 
-const KIND_COLORS: Record<UnitKind, string> = {
-  appartement: "#9fd9bd",
-  studio: "#c6ead8",
-  bureau: "#bfd0e2",
-  boutique: "#f0cf8c",
-  magasin: "#e8b872",
-};
+const KIND_COLORS: Record<UnitKind, string> = brand.kindColors;
 
 const BASE_RENT: Record<UnitKind, number> = {
   appartement: 260000,
@@ -184,7 +179,7 @@ export default function PropertyBuilder() {
     level: u.level,
     position: u.position,
     span: u.span,
-    color: activeLevel !== null && activeLevel !== u.level ? (theme === "dark" ? "#33473d" : "#e4ebe6") : KIND_COLORS[u.kind],
+    color: activeLevel !== null && activeLevel !== u.level ? (theme === "dark" ? palette.slab : palette.core) : KIND_COLORS[u.kind],
     label: `${u.code}, ${unitKindLabel[u.kind].toLowerCase()}`,
   }));
 
@@ -537,7 +532,7 @@ export default function PropertyBuilder() {
           <div className="rounded-[14px] bg-surface/90 px-4 py-3 backdrop-blur">
             <p className="type-display text-[18px] font-semibold leading-tight">{name || "Sans nom"}</p>
             <p className="num text-[12.5px] text-ink-3">
-              {plural(draftUnits.length, "local", "locaux")}, {amount(total)} FCFA par mois
+              {plural(draftUnits.length, "local", "locaux")}, {amount(total)} {brand.currency} par mois
             </p>
           </div>
           {view === "model" && <p className="hidden text-[12px] text-ink-3 sm:block">Glissez pour tourner, touchez un local pour l'éditer</p>}
@@ -713,7 +708,7 @@ function FloorEditor({
                 }}
                 className="num h-9 w-[104px] rounded-[10px] border border-line-strong bg-surface px-2 text-right text-[13.5px] text-ink focus:border-emerald focus:outline-none"
               />
-              FCFA
+              {brand.currency}
             </label>
           </li>
         ))}

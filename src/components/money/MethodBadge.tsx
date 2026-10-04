@@ -1,3 +1,4 @@
+import { TouchpointMark } from "@/components/brand/Logo";
 import { Bank, CreditCard, Money as MoneyIcon } from "@phosphor-icons/react";
 import type { PaymentMethod } from "@/domain/types";
 import { methodLabel } from "@/domain/labels";
@@ -11,6 +12,17 @@ const operator: Partial<Record<PaymentMethod, { bg: string; fg: string; mark: st
 };
 
 export function MethodBadge({ method, size = 28, className }: { method: PaymentMethod; size?: number; className?: string }) {
+  if (method === "touchpoint") {
+    return (
+      <span
+        aria-label={methodLabel[method]}
+        className={cn("inline-grid shrink-0 place-items-center overflow-hidden", className)}
+        style={{ width: size, height: size }}
+      >
+        <TouchpointMark size={size} tile />
+      </span>
+    );
+  }
   const op = operator[method];
   const style = { width: size, height: size, borderRadius: size * 0.3 };
   if (op) {

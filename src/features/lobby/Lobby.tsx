@@ -1,4 +1,5 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { brand } from "@/brand/brand";
 import { ArrowRight } from "@phosphor-icons/react";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
@@ -67,8 +68,8 @@ export function Lobby() {
       const st = unitState(d, u);
       return st === "late" ? "bg-signal" : st === "partial" ? "bg-amber" : "bg-amber";
     }
-    if (hover === "tenant") return u.id === tenantUnitId ? "bg-mint shadow-[0_0_28px_rgb(143_227_189/0.55)]" : "bg-white/[0.07]";
-    return ambientLit.has(u.id) ? "bg-mint/80 shadow-[0_0_22px_rgb(143_227_189/0.25)]" : "bg-white/[0.09]";
+    if (hover === "tenant") return u.id === tenantUnitId ? "bg-mint shadow-[0_0_28px_var(--glow)]" : "bg-white/[0.07]";
+    return ambientLit.has(u.id) ? "bg-mint/80 shadow-[0_0_22px_var(--glow)]" : "bg-white/[0.09]";
   };
 
   const roles: Array<{ role: Role; label: string; who: string; promise: string; meta: string; to: string }> = [
@@ -138,7 +139,7 @@ export function Lobby() {
             transition={{ duration: 0.8, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
             className="mt-5 max-w-[46ch] text-[16px] leading-relaxed text-on-forest-2 sm:text-[17px]"
           >
-            Bailly réunit propriétaires, gestionnaires et locataires autour du local : loyers, paiements mobile money, quittances et échanges.
+            {brand.name} réunit propriétaires, gestionnaires et locataires autour du local : loyers, paiements mobile money, quittances et échanges.
           </motion.p>
 
           <div className="mt-10 lg:mt-14">

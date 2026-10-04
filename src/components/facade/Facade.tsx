@@ -22,7 +22,7 @@ const fill: Record<UnitState, string> = {
 };
 
 const labelTone: Record<UnitState, string> = {
-  paid: "text-[#05301f]",
+  paid: "text-[color:var(--on-paid)]",
   upcoming: "text-ink-2",
   due: "text-ink-2",
   partial: "text-[#3d2900]",

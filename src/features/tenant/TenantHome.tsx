@@ -1,4 +1,5 @@
 import { ArrowRight, CalendarBlank, ChatCircleDots, CheckCircle, Phone, Receipt as ReceiptIcon, Wrench } from "@phosphor-icons/react";
+import { brand } from "@/brand/brand";
 import { motion, useReducedMotion } from "motion/react";
 import { Link } from "react-router";
 import { Facade } from "@/components/facade/Facade";
@@ -86,10 +87,18 @@ export function TenantHome() {
                 </div>
               )}
 
-              <ButtonLink to="/locataire/payer" size="lg" variant="mint" className="mt-6 w-full" trailing={<ArrowRight size={18} weight="bold" />}>
-                {pendingPay ? "Paiement en cours" : `Payer ${amount(toPay.amount - toPay.paid)} FCFA`}
+              <ButtonLink
+                to="/locataire/payer"
+                size="lg"
+                variant={brand.id === "loclic" ? "primary" : "mint"}
+                className="mt-6 w-full"
+                trailing={<ArrowRight size={18} weight="bold" />}
+              >
+                {pendingPay ? "Paiement en cours" : `Payer ${amount(toPay.amount - toPay.paid)} ${brand.currency}`}
               </ButtonLink>
-              <p className="mt-3 text-center text-[12.5px] text-on-forest-2">Wave, Orange Money, Free Money ou carte, via InTouch</p>
+              <p className="mt-3 text-center text-[12.5px] text-on-forest-2">
+                {brand.id === "loclic" ? "TouchPoint, " : ""}Wave, Orange Money, Free Money ou carte, via InTouch
+              </p>
             </>
           ) : (
             <>
@@ -130,7 +139,7 @@ export function TenantHome() {
                   units={propertyUnits(d, property.id)}
                   entrance={d.entrances[property.id]}
                   stateOf={(u) => unitState(d, u)}
-                  cellClass={(u) => (u.id === unit.id ? "bg-emerald-bright shadow-[0_0_16px_rgb(31_174_118/0.5)]" : "bg-line/80")}
+                  cellClass={(u) => (u.id === unit.id ? "bg-emerald-bright shadow-[0_0_16px_var(--glow)]" : "bg-line/80")}
                   size="sm"
                   depth={10}
                 />

@@ -1,4 +1,5 @@
 import { daysBetween, now, periodToDate } from "./clock";
+import { brand } from "@/brand/brand";
 
 const nf = new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 });
 
@@ -8,7 +9,7 @@ export function amount(n: number): string {
 }
 
 export function fcfa(n: number): string {
-  return `${amount(n)} FCFA`;
+  return `${amount(n)} ${brand.currency}`;
 }
 
 /** Compact form for tight spots: 1 245 000 -> "1,25 M". */

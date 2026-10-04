@@ -23,6 +23,7 @@ const approvalCopy: Record<InitiatePaymentInput["method"], string> = {
   wave: "Ouvrez Wave et validez la demande de paiement.",
   orange_money: "Composez #144# ou validez la notification Orange Money avec votre code secret.",
   free_money: "Validez la demande Free Money avec votre code secret.",
+  touchpoint: "Ouvrez TouchPoint et confirmez le paiement avec votre code.",
   card: "Confirmez le paiement sur la page sécurisée de votre banque.",
 };
 

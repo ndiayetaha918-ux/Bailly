@@ -1,4 +1,5 @@
 import { amount } from "@/lib/format";
+import { brand } from "@/brand/brand";
 import { cn } from "@/lib/cn";
 
 /** Amounts are set in the display face; the currency steps back.
@@ -9,7 +10,7 @@ export function Money({
   className,
   currencyClassName,
   condensed = false,
-  currency = "FCFA",
+  currency = brand.currency,
   tabular = false,
 }: {
   value: number;

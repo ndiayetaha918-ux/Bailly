@@ -1,4 +1,5 @@
 import { ChatCircleDots, DeviceMobile } from "@phosphor-icons/react";
+import { brand } from "@/brand/brand";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Field, Textarea } from "@/components/ui/Form";
@@ -31,7 +32,7 @@ export function ReminderModal({
   const [channel, setChannel] = useState<"WhatsApp" | "SMS">("WhatsApp");
   const owed = invoices.reduce((s, i) => s + i.amount - i.paid, 0);
   const periods = invoices.map((i) => periodLabel(i.period, false).toLowerCase()).join(" et ");
-  const draft = `Bonjour ${tenant ? firstName(tenant.name) : ""}, sauf erreur de notre part, le loyer de ${periods} pour ${unitTitle(unit.kind, unit.code).toLowerCase()} reste dû (${fcfa(owed)}). Vous pouvez le régler directement depuis Bailly par Wave ou Orange Money. Merci. ${signature}`;
+  const draft = `Bonjour ${tenant ? firstName(tenant.name) : ""}, sauf erreur de notre part, le loyer de ${periods} pour ${unitTitle(unit.kind, unit.code).toLowerCase()} reste dû (${fcfa(owed)}). Vous pouvez le régler directement depuis ${brand.name} par Wave ou Orange Money. Merci. ${signature}`;
   const [text, setText] = useState(draft);
   useEffect(() => {
     if (open) setText(draft);

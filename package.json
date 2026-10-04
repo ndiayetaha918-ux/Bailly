@@ -9,12 +9,14 @@
     "typecheck": "tsc -b",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
-    "build:preview": "node scripts/build-preview.mjs"
+    "build:preview": "node scripts/build-preview.mjs preview/index.html hash bailly && node scripts/build-preview.mjs preview/loclic/index.html hash loclic",
+    "dev:loclic": "VITE_BRAND=loclic vite"
   },
   "dependencies": {
     "@fontsource-variable/bricolage-grotesque": "^5.3.0",
     "@fontsource-variable/geist": "^5.3.0",
     "@fontsource-variable/geist-mono": "^5.3.0",
+    "@fontsource-variable/nunito-sans": "^5.3.0",
     "@phosphor-icons/react": "^2.1.10",
     "@radix-ui/react-dialog": "^1.1.23",
     "@react-three/drei": "^10.7.9",

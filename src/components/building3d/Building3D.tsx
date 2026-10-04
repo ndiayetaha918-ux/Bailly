@@ -45,6 +45,9 @@ export interface Palette3D {
   accent: string;
   door: string;
   glass: string;
+  shadow: string;
+  groundLight: string;
+  ink: string;
 }
 
 const BAY = 1;
@@ -154,7 +157,7 @@ function UnitBox({
       >
         <boxGeometry args={[w, h, 0.42]} />
         <meshStandardMaterial color={color} roughness={0.55} emissive={color} emissiveIntensity={hover || selected ? 0.18 : 0.04} />
-        <Edges color={selected ? "#0b1913" : palette.edge} threshold={15} />
+        <Edges color={selected ? palette.ink : palette.edge} threshold={15} />
         {/* one window per bay: keeps the facade rhythm readable */}
         {Array.from({ length: block.span }, (_, k) => (
           <mesh key={k} position={[-w / 2 + (k + 0.5) * (w / block.span), h * 0.08, 0.212]}>
@@ -185,7 +188,7 @@ function Scene(props: Building3DProps) {
 
   return (
     <>
-      <hemisphereLight args={["#ffffff", "#c9d6cd", 1.9]} />
+      <hemisphereLight args={["#ffffff", palette.groundLight, 1.9]} />
       <directionalLight position={[6, 10, 7]} intensity={1.7} castShadow shadow-mapSize={[1024, 1024]} />
       <directionalLight position={[-6, 4, -3]} intensity={0.3} />
       <group position={[0, 0, 0]}>
@@ -219,7 +222,7 @@ function Scene(props: Building3DProps) {
         {/* rooftop volume: stair core + water tank, the Dakar skyline detail */}
         <RoofKit y={height} bays={bays} palette={palette} />
       </group>
-      <ContactShadows position={[0, -0.001, 0]} opacity={0.38} scale={14} blur={2.4} far={6} color="#0b2a1f" />
+      <ContactShadows position={[0, -0.001, 0]} opacity={0.38} scale={14} blur={2.4} far={6} color={palette.shadow} />
       {showGrid && (
         <Grid
           position={[0, -0.002, 0]}

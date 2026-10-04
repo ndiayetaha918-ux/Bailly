@@ -1,4 +1,5 @@
 import { ArrowLeft, Check, CheckCircle, Lock, WarningCircle, House } from "@phosphor-icons/react";
+import { brand } from "@/brand/brand";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router";
@@ -27,6 +28,7 @@ import { cn } from "@/lib/cn";
 */
 
 const METHODS: Array<{ v: GatewayMethod; hint: string }> = [
+  ...(brand.id === "loclic" ? [{ v: "touchpoint" as const, hint: "Votre wallet TouchPoint, sans quitter le groupe InTouch" }] : []),
   { v: "wave", hint: "Validation dans l'application Wave" },
   { v: "orange_money", hint: "Validation avec votre code secret" },
   { v: "free_money", hint: "Validation avec votre code secret" },
@@ -37,6 +39,7 @@ const approval: Record<GatewayMethod, string> = {
   wave: "Ouvrez Wave : une demande de paiement vous attend. Vérifiez le montant et validez.",
   orange_money: "Une notification Orange Money arrive sur votre téléphone. Saisissez votre code secret pour valider.",
   free_money: "Une demande Free Money arrive sur votre téléphone. Saisissez votre code secret pour valider.",
+  touchpoint: "Ouvrez l'application TouchPoint : la demande de paiement vous attend. Confirmez avec votre code.",
   card: "Confirmez le paiement sur la page sécurisée de votre banque.",
 };
 
@@ -58,7 +61,7 @@ export function PayFlow() {
   const lockedInvoiceId = useMemo(() => payment?.invoiceId, [payment?.invoiceId]);
   const invoice = lockedInvoiceId ? d.invoices.find((i) => i.id === lockedInvoiceId) : invoiceToPay(d, unit.id);
 
-  const [method, setMethod] = useState<GatewayMethod>("wave");
+  const [method, setMethod] = useState<GatewayMethod>(brand.id === "loclic" ? "touchpoint" : "wave");
   const [mode, setMode] = useState<"all" | "part">("all");
   const [part, setPart] = useState("");
   const [msisdn, setMsisdn] = useState(fmtPhone(tenant.phone));
@@ -90,7 +93,7 @@ export function PayFlow() {
   if (!invoice && stage === "review") {
     return (
       <main className="mx-auto grid max-w-[520px] place-items-center px-5 py-20 text-center">
-        <CheckCircle size={44} weight="fill" className="text-emerald" />
+        <CheckCircle size={44} weight="fill" className="text-emerald-bright" />
         <h1 className="type-display mt-4 text-[30px] font-semibold">Rien à payer</h1>
         <p className="mt-1 text-[14px] text-ink-3">Votre loyer est à jour.</p>
         <ButtonLink to="/locataire" variant="dark" className="mt-6">
@@ -245,7 +248,7 @@ export function PayFlow() {
 
             <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-paper/95 p-4 backdrop-blur-md md:static md:mt-6 md:border-0 md:bg-transparent md:p-0">
               <Button variant="primary" size="lg" className="h-14 w-full text-[16px]" onClick={submit} disabled={toCharge <= 0}>
-                Payer {amount(toCharge)} FCFA
+                Payer {amount(toCharge)} {brand.currency}
               </Button>
             </div>
           </motion.div>
@@ -295,7 +298,7 @@ export function PayFlow() {
                   <span
                     className={cn(
                       "grid size-6 shrink-0 place-items-center rounded-full",
-                      s.done ? "bg-emerald text-white" : s.active ? "border-2 border-emerald" : "border-2 border-line-strong",
+                      s.done ? "bg-emerald-bright text-white" : s.active ? "border-2 border-emerald" : "border-2 border-line-strong",
                     )}
                   >
                     {s.done ? (
@@ -354,7 +357,7 @@ export function PayFlow() {
                 initial={reduce ? false : { scale: 0.4, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                className="mx-auto grid size-16 place-items-center rounded-full bg-emerald text-white"
+                className="mx-auto grid size-16 place-items-center rounded-full bg-emerald-bright text-white"
               >
                 <Check size={32} weight="bold" />
               </motion.div>

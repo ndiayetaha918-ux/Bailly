@@ -12,6 +12,13 @@ Ce dépôt contient le MVP visuel et fonctionnel : trois expériences distinctes
 Version autonome (un seul fichier, régénérée par `npm run build:preview`) :
 https://raw.githack.com/ndiayetaha918-ux/Bailly/main/preview/index.html
 
+### Variante Touchpoint Loclic (groupe InTouch)
+
+Même produit, aux couleurs TouchPoint (bleu marine, carmin, lavande, police arrondie), avec le wallet TouchPoint proposé en premier moyen de paiement et les montants en « F » :
+https://raw.githack.com/ndiayetaha918-ux/Bailly/main/preview/loclic/index.html
+
+En local : `npm run dev:loclic`. La marque se choisit au build avec `VITE_BRAND=bailly|loclic` (configuration dans `src/brand/brand.ts`, couleurs dans `src/styles/index.css` sous `:root[data-brand="loclic"]`).
+
 ## Lancer le projet
 
 ```bash

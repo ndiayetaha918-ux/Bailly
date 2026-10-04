@@ -1,4 +1,5 @@
 import { ArrowLeft, SealCheck } from "@phosphor-icons/react";
+import { brand } from "@/brand/brand";
 import { motion } from "motion/react";
 import { useNavigate, useParams, useSearchParams } from "react-router";
 import { ReceiptDoc } from "@/components/receipt/Receipt";
@@ -31,7 +32,7 @@ export function ReceiptPage() {
       <main className="mx-auto max-w-[620px] px-4 pb-16 pt-4">
         {verified && (
           <p className="no-print mb-4 flex items-center justify-center gap-2 rounded-[14px] bg-mint-soft px-4 py-3 text-[13.5px] font-medium text-mint-ink">
-            <SealCheck size={18} weight="fill" /> Quittance authentique, émise par Bailly
+            <SealCheck size={18} weight="fill" /> Quittance authentique, émise par {brand.name}
           </p>
         )}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>

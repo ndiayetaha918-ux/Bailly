@@ -89,7 +89,7 @@ export interface Invoice {
 
 export type InvoiceStatus = "paid" | "partial" | "late" | "due" | "upcoming";
 
-export type MobileMethod = "wave" | "orange_money" | "free_money";
+export type MobileMethod = "wave" | "orange_money" | "free_money" | "touchpoint";
 export type PaymentMethod = MobileMethod | "card" | "cash" | "transfer";
 export type PaymentStatus = "initiated" | "pending" | "succeeded" | "failed" | "cancelled";
 

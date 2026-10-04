@@ -17,12 +17,18 @@ for (const spec of specs) {
   page.on("console", (m) => {
     if (m.type() === "error") errors.push(`${name} console: ${m.text()}`);
   });
+  if (!process.env.SPLASH) {
+    await page.addInitScript(() => {
+      sessionStorage.setItem("bailly-splash-seen", "1");
+      sessionStorage.setItem("loclic-splash-seen", "1");
+    });
+  }
   if (theme === "dark") {
     await page.addInitScript(() => {
       localStorage.setItem("bailly-demo-v1", JSON.stringify({ state: { theme: "dark" }, version: 1 }));
     });
   }
-  await page.goto(`http://localhost:5173${path}`, { waitUntil: "networkidle" });
+  await page.goto(`${process.env.BASE_URL || "http://localhost:5173"}${path}`, { waitUntil: "networkidle" });
   await page.waitForTimeout(900);
   for (const a of actions.split(";").filter(Boolean)) {
     const i = a.indexOf(":");

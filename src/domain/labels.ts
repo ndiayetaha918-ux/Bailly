@@ -28,6 +28,7 @@ export const methodLabel: Record<PaymentMethod, string> = {
   wave: "Wave",
   orange_money: "Orange Money",
   free_money: "Free Money",
+  touchpoint: "TouchPoint",
   card: "Carte bancaire",
   cash: "Espèces",
   transfer: "Virement",

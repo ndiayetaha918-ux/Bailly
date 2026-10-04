@@ -1,6 +1,7 @@
 @import "@fontsource-variable/bricolage-grotesque/standard.css";
 @import "@fontsource-variable/geist/wght.css";
 @import "@fontsource-variable/geist-mono/wght.css";
+@import "@fontsource-variable/nunito-sans/standard.css";
 @import "tailwindcss";
 
 /*
@@ -55,6 +56,24 @@
   --chart-collected: #14996a;
   --chart-due: #e4532c;
 
+  --forest-deep: #0b3324;
+  --on-mint: #05301f;
+  --on-paid: #05301f;
+  --glow: rgb(143 227 189 / 0.5);
+  --scrim: rgb(6 20 14 / 0.36);
+
+  --brand-display: "Bricolage Grotesque Variable", "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --brand-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* The quittance is paper: always light, whatever the theme. */
+  --receipt-paper: #fbfcfa;
+  --receipt-ink: #0b1913;
+  --receipt-ink-2: #2f4038;
+  --receipt-muted: #5a6b62;
+  --receipt-line: #bccac0;
+  --receipt-wash: #eef3ef;
+  --receipt-accent: #0d7550;
+
   --shadow-tint: 12 40 28;
 }
 
@@ -95,12 +114,128 @@
   --chart-collected: #25a874;
   --chart-due: #e85a33;
 
+  --forest-deep: #0b2a1e;
+
   --shadow-tint: 0 0 0;
 }
 
+/*
+  Touchpoint Loclic (InTouch group). Same product, TouchPoint colours:
+  navy #282d5d, crimson #a81735, lavender #e7e9fe, yellow #fdbf1c.
+  Crimson carries actions, as in the TouchPoint app; paid windows light up
+  in indigo; lateness stays a warmer vermilion so it never reads as a button.
+*/
+:root[data-brand="loclic"] {
+  --paper: #f3f4fc;
+  --surface: #fefeff;
+  --surface-2: #f5f6fe;
+  --surface-3: #e7e9fe;
+  --line: #e0e2f4;
+  --line-strong: #c3c6e6;
+  --ink: #1f2350;
+  --ink-2: #43476f;
+  --ink-3: #66698d;
+
+  --forest: #282d5d;
+  --forest-2: #313772;
+  --forest-3: #3c4391;
+  --forest-deep: #1f2350;
+  --on-forest: #f2f3ff;
+  --on-forest-2: #b6badf;
+
+  --emerald: #a81735;
+  --emerald-hover: #8e1029;
+  --emerald-bright: #5257d3;
+  --mint: #c9ccfb;
+  --mint-soft: #e7e9fe;
+  --mint-ink: #383db0;
+  --on-mint: #1f2350;
+  --on-paid: #ffffff;
+
+  --signal: #e8542f;
+  --signal-soft: #fde4dc;
+  --signal-ink: #a8361a;
+
+  --amber: #fdbf1c;
+  --amber-soft: #fff2cc;
+  --amber-ink: #765300;
+
+  --pending: #d9dbf0;
+  --chart-collected: #5257d3;
+  --chart-due: #e8542f;
+
+  --glow: rgb(201 204 251 / 0.55);
+  --scrim: rgb(20 22 52 / 0.42);
+
+  --brand-display: "Nunito Sans Variable", ui-rounded, system-ui, sans-serif;
+  --brand-sans: "Nunito Sans Variable", ui-rounded, system-ui, sans-serif;
+
+  --receipt-paper: #fefeff;
+  --receipt-ink: #1f2350;
+  --receipt-ink-2: #43476f;
+  --receipt-muted: #6c6f93;
+  --receipt-line: #c3c6e6;
+  --receipt-wash: #f0f1fd;
+  --receipt-accent: #a81735;
+
+  --tp-navy: #282d5d;
+
+  --shadow-tint: 30 34 80;
+}
+
+:root[data-brand="loclic"][data-theme="dark"] {
+  --paper: #0e1028;
+  --surface: #151837;
+  --surface-2: #1a1e42;
+  --surface-3: #22274f;
+  --line: #262b55;
+  --line-strong: #363c70;
+  --ink: #ecedff;
+  --ink-2: #bfc2e6;
+  --ink-3: #8f93bd;
+
+  --forest: #252a5e;
+  --forest-2: #2e3474;
+  --forest-3: #3a418e;
+  --forest-deep: #1a1e4a;
+  --on-forest: #f2f3ff;
+  --on-forest-2: #aeb2dc;
+
+  --emerald: #d0284d;
+  --emerald-hover: #de3a5d;
+  --emerald-bright: #7176ea;
+  --mint: #c9ccfb;
+  --mint-soft: #262b5e;
+  --mint-ink: #c3c6fb;
+  --on-paid: #ffffff;
+
+  --signal: #ef6640;
+  --signal-soft: #3a1b14;
+  --signal-ink: #ff9b7d;
+
+  --amber: #fdbf1c;
+  --amber-soft: #352a0b;
+  --amber-ink: #f8d46c;
+
+  --pending: #2a2f5c;
+  --chart-collected: #7176ea;
+  --chart-due: #e85a33;
+  --tp-navy: #4a50b5;
+
+  --shadow-tint: 0 0 0;
+}
+
+/* Rounded, heavy figures like the TouchPoint wallet. */
+:root[data-brand="loclic"] .type-display,
+:root[data-brand="loclic"] .type-display-condensed {
+  font-stretch: 100%;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
 @theme inline {
-  --font-display: "Bricolage Grotesque Variable", "Geist Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--brand-display);
+  --font-sans: var(--brand-sans);
   --font-mono: "Geist Mono Variable", ui-monospace, "SF Mono", monospace;
 
   --color-paper: var(--paper);
@@ -219,8 +354,8 @@
   /* Deep green surface with a soft directional light. */
   .forest-surface {
     background:
-      radial-gradient(120% 90% at 0% 0%, var(--forest-3) 0%, transparent 55%), radial-gradient(80% 70% at 100% 100%, #0b3324 0%, transparent 60%),
-      var(--forest);
+      radial-gradient(120% 90% at 0% 0%, var(--forest-3) 0%, transparent 55%),
+      radial-gradient(80% 70% at 100% 100%, var(--forest-deep) 0%, transparent 60%), var(--forest);
     color: var(--on-forest);
   }
 

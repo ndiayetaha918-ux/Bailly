@@ -1,4 +1,5 @@
 import { Buildings, Lightning, Receipt, Wrench } from "@phosphor-icons/react";
+import { brand } from "@/brand/brand";
 import { NavLink, Outlet } from "react-router";
 import { LogoMark } from "@/components/brand/Logo";
 import { RoleMenu } from "./RoleMenu";
@@ -28,8 +29,8 @@ export function ManagerShell() {
     <div className="min-h-[100dvh] bg-paper md:pl-[84px]">
       <ScrollToTop />
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-[84px] flex-col items-center bg-forest py-4 md:flex">
-        <NavLink to="/gestionnaire" aria-label="Bailly">
-          <LogoMark size={36} lit="var(--mint)" />
+        <NavLink to="/gestionnaire" aria-label={brand.name}>
+          <LogoMark size={36} lit="var(--mint)" tile />
         </NavLink>
         <nav className="mt-8 flex flex-col gap-1.5">
           {links.map((l) => (
@@ -64,7 +65,7 @@ export function ManagerShell() {
       </aside>
 
       <header className="sticky top-0 z-30 flex h-14 items-center justify-between bg-forest px-4 md:hidden">
-        <LogoMark size={30} lit="var(--mint)" />
+        <LogoMark size={30} lit="var(--mint)" tile />
         <span className="text-[13px] font-medium text-on-forest">{manager.agency}</span>
         <RoleMenu role="manager" name={manager.name} subtitle={manager.agency} tone="forest" compact />
       </header>
