@@ -5,3 +5,4 @@ dist
 .vite
 screenshots
 tsconfig.tsbuildinfo
+dist-artifact

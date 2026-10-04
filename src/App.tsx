@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { createBrowserRouter, createMemoryRouter, RouterProvider } from "react-router";
 import { Lobby } from "@/features/lobby/Lobby";
 import { ThemeSync } from "@/components/ThemeSync";
 import { Toaster } from "@/components/ui/Toast";
@@ -27,7 +27,10 @@ const PropertyBuilder = lazy(() => import("@/features/builder/PropertyBuilder"))
 
 const page = (el: React.ReactNode) => <Suspense fallback={<PageFallback />}>{el}</Suspense>;
 
-const router = createBrowserRouter([
+// Hosted previews (claude.ai artifacts) cannot rely on URL paths: use an in-memory router there.
+const makeRouter = import.meta.env.VITE_ARTIFACT ? createMemoryRouter : createBrowserRouter;
+
+const router = makeRouter([
   { path: "/", element: <Lobby /> },
   {
     path: "/proprietaire",
