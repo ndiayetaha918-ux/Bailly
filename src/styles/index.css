@@ -1,0 +1,285 @@
+@import "@fontsource-variable/bricolage-grotesque/standard.css";
+@import "@fontsource-variable/geist/wght.css";
+@import "@fontsource-variable/geist-mono/wght.css";
+@import "tailwindcss";
+
+/*
+  Bailly design tokens
+  --------------------
+  Palette: cool green-grey paper + deep forest + emerald, with a single
+  vermilion "signal" reserved for things that need attention (retards,
+  réclamations urgentes). Amber is reserved for "partiel / bientôt dû".
+  No beige, no gold.
+
+  Shape rule (documented, enforced everywhere):
+    panels / sheets ........ 20px  (--radius-panel)
+    controls / inputs ...... 12px  (--radius-control)
+    architectural cells ....  4px  (--radius-cell)   facade windows, unit blocks
+    chips / avatars ........ full
+*/
+
+:root {
+  color-scheme: light;
+  --paper: #edf1ed;
+  --surface: #fafcfa;
+  --surface-2: #f3f6f3;
+  --surface-3: #e6ece7;
+  --line: #d9e1db;
+  --line-strong: #bccac0;
+  --ink: #0b1913;
+  --ink-2: #2f4038;
+  --ink-3: #5a6b62;
+
+  --forest: #0a2a1f;
+  --forest-2: #0f3a2b;
+  --forest-3: #164d39;
+  --on-forest: #e9f3ed;
+  --on-forest-2: #a9c4b5;
+
+  --emerald: #0d7550;
+  --emerald-hover: #0a6243;
+  --emerald-bright: #1fae76;
+  --mint: #8fe3bd;
+  --mint-soft: #dbf2e5;
+  --mint-ink: #0b5b3e;
+
+  --signal: #e4532c;
+  --signal-soft: #fbe3da;
+  --signal-ink: #a93714;
+
+  --amber: #e2a01f;
+  --amber-soft: #f8edd0;
+  --amber-ink: #7d5400;
+
+  --pending: #d3ddd6;
+  --chart-collected: #14996a;
+  --chart-due: #e4532c;
+
+  --shadow-tint: 12 40 28;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #06110c;
+  --surface: #0c1a14;
+  --surface-2: #10221a;
+  --surface-3: #152c22;
+  --line: #1c3228;
+  --line-strong: #2a4639;
+  --ink: #e6efe9;
+  --ink-2: #b3c3b9;
+  --ink-3: #82958a;
+
+  --forest: #0e3123;
+  --forest-2: #13402e;
+  --forest-3: #1a5240;
+  --on-forest: #e9f3ed;
+  --on-forest-2: #9dbcaa;
+
+  --emerald: #25a874;
+  --emerald-hover: #2dbb83;
+  --emerald-bright: #34c58b;
+  --mint: #7fd9b1;
+  --mint-soft: #123a29;
+  --mint-ink: #8fe3bd;
+
+  --signal: #f0663f;
+  --signal-soft: #3a1a10;
+  --signal-ink: #ff9a7a;
+
+  --amber: #e9ad35;
+  --amber-soft: #33270c;
+  --amber-ink: #f2c66b;
+
+  --pending: #24392f;
+  --chart-collected: #25a874;
+  --chart-due: #e85a33;
+
+  --shadow-tint: 0 0 0;
+}
+
+@theme inline {
+  --font-display: "Bricolage Grotesque Variable", "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, "SF Mono", monospace;
+
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-forest: var(--forest);
+  --color-forest-2: var(--forest-2);
+  --color-forest-3: var(--forest-3);
+  --color-on-forest: var(--on-forest);
+  --color-on-forest-2: var(--on-forest-2);
+  --color-emerald: var(--emerald);
+  --color-emerald-hover: var(--emerald-hover);
+  --color-emerald-bright: var(--emerald-bright);
+  --color-mint: var(--mint);
+  --color-mint-soft: var(--mint-soft);
+  --color-mint-ink: var(--mint-ink);
+  --color-signal: var(--signal);
+  --color-signal-soft: var(--signal-soft);
+  --color-signal-ink: var(--signal-ink);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-amber-ink: var(--amber-ink);
+  --color-pending: var(--pending);
+  --color-chart-collected: var(--chart-collected);
+  --color-chart-due: var(--chart-due);
+
+  --radius-panel: 20px;
+  --radius-control: 12px;
+  --radius-cell: 4px;
+
+  --shadow-lift: 0 1px 0 rgb(var(--shadow-tint) / 0.04), 0 12px 32px -16px rgb(var(--shadow-tint) / 0.22);
+  --shadow-float: 0 1px 0 rgb(var(--shadow-tint) / 0.05), 0 24px 60px -24px rgb(var(--shadow-tint) / 0.35);
+  --shadow-inset-cell: inset 0 -2px 0 rgb(0 0 0 / 0.08);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --breakpoint-xs: 420px;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    min-height: 100dvh;
+  }
+  ::selection {
+    background: var(--mint);
+    color: var(--forest);
+  }
+  :focus-visible {
+    outline: 2px solid var(--emerald);
+    outline-offset: 2px;
+  }
+  button {
+    cursor: pointer;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  /* Display type: Bricolage at a slightly condensed width reads like
+     building signage. Used for headings, amounts, unit codes. */
+  .type-display {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-stretch: 88%;
+    letter-spacing: -0.025em;
+    line-height: 1;
+  }
+  .type-display-condensed {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-stretch: 75%;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Vacant units are drawn with a hatch, not a colour: empty is a texture. */
+  .hatch {
+    background-image: repeating-linear-gradient(135deg, var(--line-strong) 0 1.5px, transparent 1.5px 6px);
+  }
+  .hatch-forest {
+    background-image: repeating-linear-gradient(135deg, rgb(255 255 255 / 0.16) 0 1.5px, transparent 1.5px 6px);
+  }
+
+  /* Blueprint grid used behind the building builder. */
+  .blueprint {
+    background-color: var(--surface-2);
+    background-image: radial-gradient(circle at center, var(--line-strong) 1px, transparent 1.2px);
+    background-size: 22px 22px;
+  }
+
+  /* Deep green surface with a soft directional light. */
+  .forest-surface {
+    background:
+      radial-gradient(120% 90% at 0% 0%, var(--forest-3) 0%, transparent 55%), radial-gradient(80% 70% at 100% 100%, #0b3324 0%, transparent 60%),
+      var(--forest);
+    color: var(--on-forest);
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Receipt paper edge: a cut, not a decoration. */
+  .receipt-edge-bottom {
+    -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 16px 100%;
+    mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 16px 100%;
+  }
+}
+
+/* Fixed grain layer: never on scrolling containers. */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .receipt-paper,
+  .receipt-paper * {
+    visibility: visible;
+  }
+  .receipt-paper {
+    position: absolute;
+    inset: 0 auto auto 0;
+    max-width: none;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
